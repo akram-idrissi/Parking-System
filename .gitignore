@@ -1,3 +1,9 @@
+.idea/
+# IDE specific
+.vscode/
+*.code-workspace
+
+
 # Maven specific
 backend/target/
 backend/*.iml
