@@ -1,0 +1,63 @@
+# Maven specific
+backend/target/
+backend/*.iml
+backend/.idea/
+backend/mvnw
+backend/mvnw.cmd
+backend/*.jar
+backend/*.war
+backend/*.ear
+
+# IntelliJ IDEA specific
+backend/.idea/
+backend/*.iml
+backend/*.ipr
+backend/*.iws
+backend/.idea_modules/
+
+# Spring Boot specific
+backend/spring-boot-starter-*.log
+backend/logs/
+backend/build/
+
+# IDE specific
+backend/.vscode/
+backend/*.code-workspace
+
+# OS specific
+backend/.DS_Store
+backend/Thumbs.db
+
+# Compiled Java classes
+backend/*.class
+
+# Package files
+backend/*.jar
+backend/*.war
+backend/*.ear
+
+# Dependency directories
+backend/lib/
+
+# Node.js
+frontend/node_modules/
+
+# Next.js build output
+frontend/out/
+frontend/.next/
+frontend/.cache/
+frontend/public/
+
+# Typescript
+frontend/*.tsbuildinfo
+
+# IDE specific
+frontend/.vscode/
+
+# ESLint
+frontend/.eslintcache
+frontend/.vscode/
+frontend/.eslintcache
+frontend/.eslintignore
+frontend/.eslintrc
+frontend/.eslintignore
