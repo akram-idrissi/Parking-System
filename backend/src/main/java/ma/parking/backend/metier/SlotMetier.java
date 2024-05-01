@@ -17,30 +17,28 @@ public class SlotMetier implements SlotManager {
 
     @Override
     public List<Slot> getAllSlots() {
-        return slotRepository.findAllSlots();
+        return slotRepository.findAll();
     }
 
     @Override
     public boolean checkin(int id) {
-        Slot slot = slotRepository.findSlotByID(id);
+        Slot slot = slotRepository.findSlotById(id);
 
         if (slot.getStatus().equals(Slot.STATUS.BUSY))
             return false;
 
         slot.setStatus(Slot.STATUS.BUSY);
+        slotRepository.save(slot);
 
         return true;
     }
 
     @Override
     public boolean checkout(int id) {
-        Slot slot = slotRepository.findSlotByID(id);
-
-        if (slot.getStatus().equals(Slot.STATUS.AVAILABLE))
-            return false;
-
+        Slot slot = slotRepository.findSlotById(id);
         slot.setStatus(Slot.STATUS.AVAILABLE);
         slot.setVehicle(null);
+        slotRepository.save(slot);
 
         return true;
     }
