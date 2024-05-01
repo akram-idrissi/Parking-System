@@ -8,9 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
-    User  findUserByID(int id);
-    User  findUserByName(String name);
-    User  findUserByVehicle(Vehicle vehicle);
-    User  findUserBySlot(Slot slot);
-    List<User> findAllUsers();
+    User  findUserById(int id);
+    User  findUserByUsername(String name);
+    List<User> findAll();
 }

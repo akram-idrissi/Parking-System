@@ -7,9 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface SlotRepository extends JpaRepository<User, Integer> {
-    Slot findSlotByID(int id);
-    Slot  findSlotByUser(User user);
+public interface SlotRepository extends JpaRepository<Slot, Integer> {
+    Slot findSlotById(int id);
     Slot  findSlotByVehicle(Vehicle vehicle);
-    List<Slot> findAllSlots();
+    List<Slot> findAll();
 }

@@ -7,10 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface VehicleRepository extends JpaRepository<User, Integer> {
+public interface VehicleRepository extends JpaRepository<Vehicle, Integer> {
     Vehicle findVehicleBySlot(Slot slot);
 
-    Vehicle  findVehicleByID(int id);
+    Vehicle  findVehicleById(int id);
     Vehicle  findVehicleByBrand(String brand);
-    List<Vehicle> findAllVehicles();
+    List<Vehicle> findAll();
 }
