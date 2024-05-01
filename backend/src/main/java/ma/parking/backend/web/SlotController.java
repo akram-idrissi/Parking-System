@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +39,7 @@ public class SlotController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/checkin")
+    @PostMapping("/checkout")
     public ResponseEntity<Map<String, Boolean>> checkout(@RequestParam(name = "slot_id") Integer id) {
         Map<String, Boolean> response = new HashMap<>();
         boolean slotAvailable = slotManager.checkout(id);
