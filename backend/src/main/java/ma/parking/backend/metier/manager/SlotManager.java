@@ -9,8 +9,6 @@ import java.util.List;
 @Component
 public interface SlotManager {
 
+    Slot getSlot(int id);
     List<Slot> getAllSlots();
-
-    boolean checkin(int id);
-    boolean checkout(int id);
 }

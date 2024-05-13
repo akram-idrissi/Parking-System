@@ -11,6 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @ToString(of = "id")
 @Entity
@@ -21,16 +22,16 @@ public class Slot implements Serializable {
     @Column(name = "id")
     private Long id;
 
+//    @OneToOne
+//    @JoinColumn(name = "vehicle_plate")
+//    private Vehicle vehicle;
+
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private STATUS status;
 
-    @OneToOne
-    @JoinColumn(name = "vehicle_id")  // Add a foreign key column in the Slot table
-    private Vehicle vehicle;
-
-    @ManyToMany(mappedBy = "slots")
-    private List<User> users = new ArrayList<>();
+//    @OneToMany(mappedBy = "slot")
+//    private List<Reservation> userSlots = new ArrayList<>();
 
     public enum STATUS {
         AVAILABLE, BUSY

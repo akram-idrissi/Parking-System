@@ -3,10 +3,7 @@ package ma.parking.backend.dao.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -14,44 +11,38 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @ToString(of = "id")
 @Entity
 @Table(name = "Reservation")
 public class Reservation implements Serializable {
+
+    public Reservation(User user, Slot slot, LocalDateTime checkin, LocalDateTime checkout) {
+        this.user = user;
+        this.slot = slot;
+        this.checkinDate = checkin;
+        this.checkoutDate = checkout;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
+    @JoinColumn(name = "slot_id")
     private Slot slot;
 
-    @Column(name = "user_id", nullable = false, unique = false, length = 100, insertable=false, updatable=false)
-    private String username;
-
-    @Column(name = "slot_id", nullable = false, insertable=false, updatable=false)
-    private String password;
-
-    @CreatedBy
-    @Column(name = "created_by")
-    private String createdBy;
-
-    @LastModifiedBy
-    @Column(name = "modified_by")
-    private String modifiedBy;
+    @CreatedDate
+    @Column(name = "checkin_date")
+    private LocalDateTime checkinDate;
 
     @CreatedDate
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-
-
+    @Column(name = "checkout_date")
+    private LocalDateTime checkoutDate;
 }

@@ -4,7 +4,6 @@ package ma.parking.backend.dao.entities;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -12,19 +11,28 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @ToString(of = "id")
 @Entity
-@Table(name = "Reservation")
-public class Reservation implements Serializable {
+@Table(name = "SlotVehicleReservation")
+public class SVReservation implements Serializable {
+
+    public SVReservation(Vehicle vehicle, Slot slot, LocalDateTime checkin, LocalDateTime checkout) {
+        this.vehicle = vehicle;
+        this.slot = slot;
+        this.checkinDate = checkin;
+        this.checkoutDate = checkout;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "vehicle_plate", referencedColumnName = "plate")
+    private Vehicle vehicle;
 
     @ManyToOne
     @JoinColumn(name = "slot_id")
@@ -37,8 +45,4 @@ public class Reservation implements Serializable {
     @CreatedDate
     @Column(name = "checkout_date")
     private LocalDateTime checkoutDate;
-
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
 }
