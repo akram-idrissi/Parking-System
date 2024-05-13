@@ -2,6 +2,10 @@
 
 import { useState } from 'react';
 
+interface FormProps {
+  onFetchSlots: (checkinTime: string, checkoutTime: string) => void;
+}
+
 function formatDateForInput(date: Date): string {
   const year: number = date.getFullYear();
   let month: string | number = date.getMonth() + 1;
@@ -18,15 +22,20 @@ function formatDateForInput(date: Date): string {
   return `${year}-${month}-${day}T${hours}:${minutes}`;
 }
 
-export default function Form() {
+export default function Form({onFetchSlots}: FormProps) {
   const today: Date = new Date();
   const oneYearFromNow: Date = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
 
   const [checkinTime, setCheckinTime] = useState<string>(formatDateForInput(today));
   const [checkoutTime, setCheckoutTime] = useState<string>(formatDateForInput(today));
 
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onFetchSlots(checkinTime, checkoutTime);
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="checkin">
         <label htmlFor="checkin-time">From:</label>
         <input

@@ -104,3 +104,85 @@
     font-size: 16px;
     letter-spacing: 1px;
 }
+
+.slots-wrapper {
+    background-color: #f6f6f6;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.slots-wrapper h2 {
+    text-align: center;
+    font-size: 60px;
+    margin-bottom: 40px;
+}
+
+.slots {
+    display: grid;
+    grid-template-columns: repeat(5, 100px);
+    gap: 40px;
+    justify-content: center;
+}
+
+.slots .slot {
+    text-transform: capitalize;
+    font-size: 20px;
+    height: 120px;
+    border-radius: 7px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    position: relative;
+}
+
+.slots .busy {
+    background-color: #dc3545;
+}
+
+.slots .available {
+    background-color: #28a745;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.slots .choosen {
+    background-color: #777;
+}
+
+.slots .available:hover {
+    transform: translateY(-10px);
+}
+
+.slots .font-for-nums {
+    display: inline-block;
+    font-family: sans-serif;
+}
+
+.slot {
+    flex-direction: column;
+}
+
+.slot .book {
+    width: 90%;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 0;
+    border-radius: 7px;
+    color: #fff;
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #fff;
+    font-weight: bold;
+    transition: 0.3s;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.slot .book:hover {
+    color: #000;
+    background-color: #fff;
+}
