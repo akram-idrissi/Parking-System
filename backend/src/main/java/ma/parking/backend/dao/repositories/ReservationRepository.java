@@ -9,10 +9,15 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
-    Reservation  findReservationByCheckinDateBefore(LocalDateTime date);
-    Reservation  findReservationByCheckoutDateAfter(LocalDateTime date);
+    Reservation findReservationByCheckinDateBefore(LocalDateTime date);
+
+    Reservation findReservationByCheckoutDateAfter(LocalDateTime date);
+
     Reservation findReservationByUser(User user);
+
     Reservation findReservationBySlot(Slot slot);
+
     Reservation findReservationByUserAndSlot(User user, Slot slot);
-    List<Reservation> findAll();
+
+    List<Reservation> findReservationsByCheckinDateAfterAndCheckoutDateBefore(LocalDateTime checkinDate, LocalDateTime checkoutDate);
 }

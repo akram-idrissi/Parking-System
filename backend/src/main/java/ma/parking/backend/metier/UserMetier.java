@@ -42,14 +42,14 @@ public class UserMetier implements UserManager {
 
         Vehicle vehicle = new Vehicle(
                 reqVehicle.get("brand").asText(),
+                reqVehicle.get("plate").asText(),
                 reqVehicle.get("model").asText(),
-                reqVehicle.get("color").asText(),
-                reqVehicle.get("plate").asText()
+                reqVehicle.get("color").asText()
         );
 
         Slot slot = slotRepository.findById(Integer.parseInt(reqParams.get("id").asText())).orElse(null);
         if (slot == null || slot.getStatus() != Slot.STATUS.AVAILABLE) {
-            return false; // Slot not available or invalid
+            return false;
         }
 
         Reservation reservation = new Reservation(

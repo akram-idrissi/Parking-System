@@ -1,8 +1,9 @@
 package ma.parking.backend.metier;
 
-import ma.parking.backend.dao.entities.*;
-import ma.parking.backend.dao.repositories.SlotRepository;
-import ma.parking.backend.metier.manager.SlotManager;
+import ma.parking.backend.dao.entities.Reservation;
+import ma.parking.backend.dao.entities.Slot;
+import ma.parking.backend.dao.repositories.ReservationRepository;
+import ma.parking.backend.metier.manager.ReservationManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,23 +12,16 @@ import java.util.List;
 
 
 @Service
-public class SlotMetier implements SlotManager {
+public class ReservationMetier implements ReservationManager {
 
     @Autowired
-    private SlotRepository slotRepository;
-
-    public Slot getSlot(int id) {
-        return slotRepository.findSlotById(id);
-    }
-    @Override
-    public List<Slot> getAllSlots() {
-        return slotRepository.findAll();
-    }
+    private ReservationRepository reservationRepository;
 
     @Override
-    public List<Slot> getFreeSlots() {
-
-
-        return null;
+    public List<Long> getBusySlots(LocalDateTime checkin, LocalDateTime checkout) {
+        return reservationRepository.findReservationsByCheckinDateAfterAndCheckoutDateBefore(checkin, checkout)
+                .stream().map(Reservation::getSlot)
+                .map(Slot::getId)
+                .toList();
     }
 }
