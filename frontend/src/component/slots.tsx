@@ -19,17 +19,12 @@ interface CheckinProps {
 }
 
 
-export default function Slots({ data, checkin, checkout }: SlotsProps) {
+export default function Slots({ data }: any) {
 
     const [selectedSlot, setSelectedSlot] = useState<number>(-1);
-    const [checkinProps, setCheckinsProps] = useState<CheckinProps | any>();
 
     const onSlotClick = (slotId: number) => {
         setSelectedSlot(slotId === selectedSlot ? -1 : slotId);
-        setCheckinsProps({
-            checkinTime: checkin,
-            checkoutTime: checkout
-        });
     };
 
     return (
@@ -37,23 +32,24 @@ export default function Slots({ data, checkin, checkout }: SlotsProps) {
             <h2>Parking Slots:</h2>
             <div className="slots container">
                 {data.map((slot: any) => (
-                        <div key={slot.id}
-                            className={`slot ${slot.status === 'AVAILABLE' ? 'available' : 'busy'} ${selectedSlot === slot.id ? 'choosen' : ''}`}
-                            onClick={() => onSlotClick(slot.id)}
-                            >
-                             <div>
-                                slot <span className="font-for-nums">{slot.id}</span>
-                             </div>
-                            {slot.status === 'AVAILABLE' && selectedSlot === slot.id && (
-                                
-                                <Link className="book" href={{ pathname: '/checkin', query: {
-                                                id: selectedSlot, 
-                                                checkin: checkinProps.checkinTime, 
-                                                checkout: checkinProps.checkoutTime}}} >
-                                    Book Now
-                                </Link>
-                            )}
+                    <div key={slot.id}
+                        className={`slot ${slot.status === 'AVAILABLE' ? 'available' : 'busy'} ${selectedSlot === slot.id ? 'choosen' : ''}`}
+                        onClick={() => onSlotClick(slot.id)}
+                    >
+                        <div>
+                            slot <span className="font-for-nums">{slot.id}</span>
                         </div>
+                        {slot.status === 'AVAILABLE' && selectedSlot === slot.id && (
+
+                            <Link className="book" href={{
+                                pathname: '/checkin', query: {
+                                    id: selectedSlot
+                                }
+                            }} >
+                                Book Now
+                            </Link>
+                        )}
+                    </div>
                 ))}
             </div>
         </div>

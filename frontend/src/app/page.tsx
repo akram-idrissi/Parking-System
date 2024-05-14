@@ -3,9 +3,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react';
-import Form from '../component/form';
 import Slots from '../component/slots';
-import { findSlots } from '../component/findSpots';
+import { findSlots } from '../component/findSlots';
 
 import '../css/global.css'
 
@@ -14,16 +13,13 @@ export default function Home() {
   const [slots, setSlots] = useState([]);
   const [showSlots, setShowSlots] = useState(false);
 
-  const [_checkin, setCheckin] = useState("");
-  const [_checkout, setCheckout] = useState("");
 
-  const fetchSlots = async (checkinTime: string, checkoutTime: string) => {
+  const fetchSlots = async () => {
     try {
-      const response = await findSlots(checkinTime, checkoutTime);
+      const response = await findSlots();
+      console.log(response.slots);
       setSlots(response.slots);
       setShowSlots(true);
-      setCheckin(response.checkinTime);
-      setCheckout(response.checkoutTime);
     } catch (error) {
       console.error('Error fetching slots data:', error);
     }
@@ -35,10 +31,10 @@ export default function Home() {
         <div className="hero-content">
           <nav>
             <div className="logo">
-            <Image
-              src="/images/logo2.png"
-              priority={true}
-              width={180} height={180} alt="Parky Logo"/>
+              <Image
+                src="/images/logo2.png"
+                priority={true}
+                width={180} height={180} alt="Parky Logo" />
             </div>
 
             <div className="links">
@@ -47,13 +43,12 @@ export default function Home() {
               <Link href="/">pricing</Link>
             </div>
           </nav>
-
           <h1>Search for you perfect parking slot</h1>
-
-          <Form onFetchSlots={fetchSlots} />
-        </div>  
+          <button className="search-btn" onClick={fetchSlots}>Find Slots</button>
+          {/* <Form onFetchSlots={fetchSlots} /> */}
+        </div>
       </main>
-      {showSlots && <Slots data={slots} checkin={_checkin} checkout={_checkout} />}
+      {showSlots && <Slots data={slots} />}
     </>
   );
 }

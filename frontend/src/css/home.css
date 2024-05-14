@@ -186,3 +186,22 @@
     color: #000;
     background-color: #fff;
 }
+
+.search-btn {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    margin: auto;
+    margin-top: 100px;
+    padding: 20px 60px;
+    border-radius: 10px;
+    outline: none;
+    text-transform: capitalize;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #fff;
+    border: none;
+    background-color: #0072f5;
+}
