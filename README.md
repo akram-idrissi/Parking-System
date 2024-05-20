@@ -52,9 +52,9 @@ To get the application up and running, follow these steps:
    ```bash
    npm install
    ```
-3. **Run the frontend::**
+3. **Run the frontend:**
    ```bash
    npm run dev
    ```
-
-Navigate to: http://localhost:3000
+3. **Open Browser:**
+   Navigate to: http://localhost:3000
