@@ -84,7 +84,7 @@ export default function Checkin() {
           <h3>User Information</h3>
           <div className='user-form'>
             <div className="inputs">
-              <label htmlFor="username">Username:</label>
+              <label htmlFor="username">CIN:</label>
               <input type="text" id="username" name="username" value={userInfo.username} onChange={(e) => setUserInfo({ ...userInfo, username: e.target.value })} required />
             </div>
             {/* <div className="inputs">
